@@ -1,0 +1,37 @@
+lr: 0.0001
+lr_backbone: 0.00001
+backbone: "resnet50"
+position_embedding: 'sine'
+enc_layers: 6
+dec_layers: 6
+dim_feedforward: 2048
+hidden_dim: 256
+dropout: 0.1
+nheads: 8
+num_queries: 100
+pre_norm: False
+aux_loss: True
+set_cost_class: 1
+set_cost_bbox: 5
+set_cost_giou: 2
+mask_loss_coef: 1
+dice_loss_coef: 1
+bbox_loss_coef: 5
+giou_loss_coef: 2
+eos_coef: 0.1
+dataset_file: "scan_net"
+device: "cuda"
+masks: False
+dilation: False
+
+descriptor_dim: 256
+weights: indoor
+keypoint_encoder: [78, 256, 256]
+GNN_layers: ['self', 'cross', 'self', 'cross', 'self', 'cross', 'self', 'cross']
+self_GNN_layers: ['self', 'self']
+sinkhorn_iterations: 100
+match_threshold: 0.2
+
+dataset:
+  img_h: 968
+  img_w: 1296
