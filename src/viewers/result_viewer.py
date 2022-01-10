@@ -12,7 +12,6 @@ from PIL import ImageColor
 
 import src.datasets.scannet_utils as scannet_utils
 
-sys.path.append("/home/kejie/repository/DOM")
 import src.utils.o3d_helper as o3d_helper
 from src.utils.o3d_helper import STANDARD_COLORS
 
