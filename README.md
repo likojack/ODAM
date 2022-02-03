@@ -6,7 +6,7 @@ Implementation for ODAM: Object Detection, Association, and Mapping using Posed 
 
 1. install the packages using the following command:
 
-`conda env create -f requirement.yml`
+`conda env create -f environment.yml`
 
 2. Copy [ScanNet](http://www.scan-net.org/) data to ./data
 
