@@ -145,7 +145,7 @@ def read_csv(filename, skip_header=False):
     return rows
 
 
-def load_prediction_from_vid2cad(view_threshold, axis_align_matrices):
+def load_prediction_from_vid2cad(view_threshold, axis_align_matrices, box2cad=None):
     file_path = VID2CAD_PATH
     alignments = read_csv(file_path)
     predictions = {}
@@ -160,11 +160,13 @@ def load_prediction_from_vid2cad(view_threshold, axis_align_matrices):
             continue
         id_cad = alignment[2]
         cadkey = catid_cad + "_" + id_cad
+        b2c = np.asarray(box2cad[cadkey], dtype=np.float64)
 
         t = np.asarray(alignment[3:6], dtype=np.float64)
         q0 = np.asarray(alignment[6:10], dtype=np.float64)
         q = np.quaternion(q0[0], q0[1], q0[2], q0[3])
         s = np.asarray(alignment[10:13], dtype=np.float64)/2
+        s = s * b2c.diagonal()[:-1]
 
         T_wo = np.eye(4)
         T_wo[0:3, 3] = t
@@ -326,8 +328,11 @@ def main():
     total_tps = {k: 0 for k in CARE_CLASSES}
 
     if args.source == "vid2cad":
+        b2c_path = "./box2cad.json"
+        with open(b2c_path, "r") as f:
+            b2c = json.load(f)
         predictions = load_prediction_from_vid2cad(
-            args.min_views, axis_align_matrices)
+            args.min_views, axis_align_matrices, b2c)
     else:
         predictions = load_prediction_ours(args.result_dir, args.min_views)
     for scan in scan2cad:
