@@ -10,7 +10,7 @@ Implementation for ODAM: Object Detection, Association, and Mapping using Posed 
 
 2. Copy [ScanNet](http://www.scan-net.org/) data to ./data
 
-3. Download the pretrained model from [here](https://drive.google.com/drive/folders/13tpl9j0TGuJjXBCmsyLqHWBque27n-xv?usp=sharing) and place them in ./experiments/
+3. Download the pretrained model from [here](https://drive.google.com/drive/folders/13tpl9j0TGuJjXBCmsyLqHWBque27n-xv?usp=sharing) and place them in ./experiments/. Also place the scannet_img file to ./data/ScanNet/
 
 ## Run ODAM
 
